@@ -1,0 +1,140 @@
+/* =========================================
+   ESTILOS DE LA CABECERA (HEADER)
+   ========================================= */
+.cabecera {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--container-padding);
+  z-index: 1000;
+  background-color: var(--bg-color);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--transition-normal);
+}
+
+/* Contenedor del Logotipo */
+.cabecera .logotipo {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.5px;
+}
+
+.cabecera .logotipo a {
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.cabecera .logotipo a:hover {
+  color: var(--primary-color);
+}
+
+.cabecera .logotipo img {
+  height: 1.75rem;
+  width: auto;
+  margin-right: 0.75rem;
+  display: inline-block;
+  transition: transform var(--transition-fast);
+}
+
+.cabecera .logotipo a:hover img {
+  transform: rotate(-10deg);
+}
+
+/* Navegación y Buscador */
+.cabecera nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+}
+
+/* =========================================
+   CONTENEDOR PRINCIPAL (#aplicacion)
+   ========================================= */
+#aplicacion {
+  /* Separación superior para compensar el header fijo */
+  padding: 2rem var(--container-padding);
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+
+  /* Grid Responsivo para las películas */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+/* Ajustes para pantallas grandes */
+@media (min-width: 1200px) {
+  #aplicacion {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+}
+
+/* Ajustes para móviles */
+@media (max-width: 600px) {
+  .cabecera {
+    padding: 0 0.5rem;
+  }
+
+  .cabecera .logotipo span {
+    display: none;
+    /* Ocultar texto si es necesario en muy pequeños */
+  }
+
+  .cabecera .logotipo img {
+    margin-right: 0;
+  }
+
+  #aplicacion {
+    padding: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* =========================================
+   CONTENEDOR GLOBAL (ENVOLTORIO)
+   ========================================= */
+.envoltorio {
+  flex: 1;
+  /* Esto empuja el footer hacia abajo */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* =========================================
+   PIE DE PÁGINA (FOOTER)
+   ========================================= */
+.pie-pagina {
+  padding: 1.5rem;
+  text-align: center;
+  background-color: var(--card-bg-color);
+  color: var(--text-color-muted);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.9rem;
+  margin-top: auto;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.pie-pagina p {
+  margin: 0;
+}

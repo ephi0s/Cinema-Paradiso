@@ -1,0 +1,91 @@
+/* =========================================
+   RESET ULTRA-MINIMAL
+   ========================================= */
+
+/* 1) Box sizing y eliminación de márgenes/paddings por defecto */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Evitar que el tamaño de fuente escale inesperadamente en móvil */
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+/* 2) Altura completa para el layout principal */
+html,
+body,
+#root {
+    height: 100%;
+}
+
+/* =========================================
+   VARIABLES Y TEMA (THEMING)
+   ========================================= */
+:root {
+    /* Paleta de Colores */
+    --bg-color: #1a1a1a;          /* Fondo principal más oscuro para contraste */
+    --bg-color-secondary: #242424; /* Fondo secundario */
+    --card-bg-color: #2a2a2a;     /* Fondo de tarjetas */
+    --text-color: #f0f0f0;        /* Texto principal (casi blanco) */
+    --text-color-muted: #a0a0a0;  /* Texto secundario/deshabilitado */
+    
+    /* Colores de Acento */
+    --primary-color: #3b82f6;     /* Azul vibrante */
+    --primary-hover-color: #2563eb; 
+    --accent-color: #e50914;      /* Rojo tipo "cinema" */
+
+    /* Superposiciones y Sombras */
+    --overlay-color: rgba(0, 0, 0, 0.85);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+
+    /* Espaciado y Layout */
+    --header-height: 4rem;
+    --container-padding: 1rem;
+    --border-radius-sm: 0.375rem;
+    --border-radius-md: 0.5rem;
+    --border-radius-lg: 1rem;
+
+    /* Transiciones */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+}
+
+/* =========================================
+   ESTILOS BASE
+   ========================================= */
+body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden; /* Evitar scroll horizontal accidental */
+}
+
+/* Ajustes de medios responsivos */
+img,
+picture,
+video,
+svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* =========================================
+   LAYOUT GLOBAL (#root)
+   ========================================= */
+#root {
+    margin-top: var(--header-height); /* Espacio para el header fijo */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

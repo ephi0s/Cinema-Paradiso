@@ -1,0 +1,173 @@
+/* Contenedor principal del buscador */
+.buscador {
+    display: flex;
+    width: 100%;
+    max-width: 450px;
+    align-items: center;
+    background-color: var(--card-bg-color);
+    border-radius: 999px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-fast);
+    border: 2px solid transparent;
+    overflow: hidden;
+    position: relative;
+}
+
+
+
+/* Wrapper para el input */
+.caja-busqueda {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* Input de búsqueda */
+.buscador input {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    background: transparent;
+    outline: none;
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+/* Botones (Buscar y Cerrar) */
+.buscador button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: color var(--transition-fast), background-color var(--transition-fast);
+    height: 100%;
+}
+
+/* Icono de Lupa (Submit) */
+.buscador button[type="submit"] {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.buscador button[type="submit"]:hover {
+    background-color: var(--primary-hover-color);
+}
+
+/* Botón de cerrar (Solo visible en móvil expandido) */
+.boton-cerrar {
+    display: none;
+    font-size: 1.2rem;
+}
+
+/* =========================================
+   RESPONSIVE: MÓVILES (< 600px)
+   ========================================= */
+@media (max-width: 600px) {
+    .buscador {
+        background-color: transparent;
+        box-shadow: none;
+        width: 38px;
+        /* Ancho inicial (tamaño botón) */
+        height: 38px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        /* Posicionamiento absoluto para no afectar layout al expandir */
+        position: absolute;
+        right: 0.5rem;
+        /* Coincide con padding del header */
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2000;
+
+        transition: width 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+            background-color 0.3s ease,
+            box-shadow 0.3s ease,
+            border-radius 0.3s ease;
+    }
+
+    /* Estado por defecto: Solo botón lupa */
+    .caja-busqueda {
+        opacity: 0;
+        /* Ocultar visualmente pero mantener en DOM */
+        transition: opacity 0.2s ease;
+        pointer-events: none;
+        position: absolute;
+        /* Para que no ocupe espacio en colapsado si width es pequeño */
+        left: 0;
+        width: 100%;
+    }
+
+    .buscador button[type="submit"] {
+        border-radius: 50%;
+        width: 38px;
+        height: 38px;
+        padding: 0;
+        background-color: transparent;
+        color: var(--text-color);
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 5;
+    }
+
+    .buscador button[type="submit"]:hover {
+        background-color: transparent;
+        color: var(--primary-color);
+    }
+
+    /* --- ESTADO EXPANDIDO --- */
+    .buscador.expandido {
+        width: calc(100% - 1rem);
+        background-color: var(--bg-color);
+        align-items: center;
+        justify-content: space-between;
+        color: var(--text-color);
+        z-index: 10;
+        cursor: default;
+        border-radius: 999px;
+    }
+
+    .buscador.expandido .caja-busqueda {
+        opacity: 1;
+        pointer-events: auto;
+        position: relative;
+    }
+
+    .buscador.expandido button[type="submit"] {
+        position: relative;
+        right: auto;
+        top: auto;
+        width: auto;
+        height: auto;
+        border-radius: 0;
+        padding: 0.8rem;
+    }
+
+    .buscador.expandido .boton-cerrar {
+        display: flex;
+    }
+
+    .buscador.expandido .boton-cerrar:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--primary-color);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

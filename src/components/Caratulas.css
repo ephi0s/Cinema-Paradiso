@@ -1,0 +1,87 @@
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Contenedor principal de la carátula */
+.tarjeta-peli {
+    width: 100%;
+    height: 100%;
+    transition: transform var(--transition-fast);
+    /* Animación de entrada */
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.tarjeta-peli:hover {
+    transform: translateY(-4px);
+    /* Sutil elevación al hover */
+}
+
+/* Visor de la imagen y contenedor interno */
+.visor-peli {
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-bg-color);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    cursor: pointer;
+}
+
+/* Imagen de la carátula */
+.visor-peli img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    display: block;
+    /* La transición de opacidad se maneja inline en React para carga */
+}
+
+.visor-peli:hover img {
+    opacity: 0.9;
+}
+
+/* Leyenda / Título superpuesto */
+.visor-peli legend {
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-color);
+    background: var(--overlay-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    backdrop-filter: blur(4px);
+
+    /* Posicionamiento y Animación */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity var(--transition-normal), transform var(--transition-normal);
+}
+
+/* Mostrar leyenda al hacer hover en la carátula */
+/* Se usa .caratula:hover para asegurar que el trigger sea todo el contenedor */
+.tarjeta-peli:hover .visor-peli legend {
+    opacity: 1;
+    transform: translateY(0);
+}
