@@ -212,3 +212,9 @@ Esto se produjo dado que nuestra implementación inicial no funcionaba. Procedim
 4. Rediseño UI. Se ha unificado el buscador en una única "pastilla" visual para mejorar la estética, utilizando el botón de limpieza nativo de los navegadores. Además, se han añadido animaciones de entrada "fade-in" para suavizar la carga de las carátulas de películas.
 
 5. Buscador Responsivo. Se ha rediseñado el buscador para móviles a modo de "overlay" expansible, usando iconos SVG y transiciones suaves para mejorar la experiencia de uso en pantallas pequeñas. Se solucionaron problemas de limpieza de búsqueda y se eliminaron conflictos visuales con el logotipo.
+
+## Requisitos adicionales
+
+Por solicitud del proyecto, se procede a dockerizar la instancia en su versión de desarrollo, para que pueda ser probada en un equipo externo. Po ello, se procede a crear un archivo Dockerfile y un archivo docker-compose.yml, que permitirán la creación de un contenedor con la aplicación corriendo en un puerto específico.
+
+Tras realizar la dockerización, se procede a probar la aplicación en un equipo externo, para verificar que todo funcione correctamente. El resultado es el acceso en puerto 80 de la aplicación, teniendo de fondo una imagen de Alpine Linux con Node.js con PNPM implementado sobre el contenedor. Sobre esto, un archivo de composición ejecuta la aplicación, exponiendo los archivos del directorio de trabajo local al contenedor. El resultado, una implementación portátil con la única dependencia de una instancia de Docker disponible en el equipo externo.
